@@ -79,12 +79,9 @@ class Library {
     }
 
     giveBookByName(bookName) {
-        const bookIndex = this.books.findIndex(book => book.name === bookName)
-        if (bookIndex === -1) {
-            return null
-        } else {
-            const [book] = this.books.splice(bookIndex, 1)
-            return book
-        }
+        const book = this.findBookBy("name", bookName)
+        if (!book) return null
+        this.books = this.books.filter((item) => item.name !== bookName)
+        return book
   }
 }
